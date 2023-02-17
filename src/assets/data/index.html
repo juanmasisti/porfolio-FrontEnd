@@ -1,0 +1,242 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Portfolio web </title>
+        <!----- Boostrap ----->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!----- CSS ----->
+        <link rel="stylesheet" href="styles/interfaz.css" />
+        <!--- Scrips js -->
+        <script
+        src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        crossorigin="anonymous">
+        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"></script>
+        <script type="text/javascript" src="scripts/cards.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark navegacion">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index2.html">
+              <img id=logo class="img-fluid" src="images/logo.png" alt="Logo" width="30" height="10" class="d-inline-block align-text-top">
+                
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav me-auto mb-0 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="index.html">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="html/sobreMi.html">Sobre Mi</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="html/contacto.html">Contacto</a>
+                  </li>
+                </ul>
+                <ul class="list-group list-group-horizontal">
+                  <li class="list-group-item"><a class=link href="http://instagram.com/"><i class="fa-brands fa-instagram fa-2x" type="button"></i></a>                                      </li>
+                  <li class="list-group-item"><a class=link href="http://facebook.com/"><i class="fa-brands fa-facebook fa-2x"></i> </a>  
+                  <li class="list-group-item"><a class=link href="http://twitter.com/"><i class="fa-brands fa-twitter fa-2x"></i> </a>  
+                  <li class="list-group-item"><i class="fa-solid fa-user fa-2x" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"data-bs-whatever="@getbootstrap" >
+                  </i> 
+                </ul>
+            
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Ingresar</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div> 
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Usuario</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                          </div>
+                          <div class="mb-3">
+                            <label for="inputPassword" class="col-form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="inputPassword">
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Ingresar</button>
+                        <button type="button" class="btn btn-secondary">Olvide la contraseña</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+        <header >
+          <div class="cajaHeader">
+            <div class="circle"> </div> 
+            <div>
+              <h1> Portfolio Web </h1>
+              <p> Juan Manuel Sisti</p>
+            </div>
+          </div>
+          <div class="pieFoto">
+            <h1> Juan Manuel Sisti </h1>
+            <h2> Full Stack Developer Jr.</h2>
+            <a href="html/contacto.html"> Informacion de contacto </a>
+         </div> 
+        </header>
+
+        <section class="cajaSobreMi seccion">
+           <h1> Acerca de </h1>
+           <p> Estudiante de segundo año en analista de sistemas en la Universidad Nacional de La Plata, con distintos cursos realizados en desarrollo web. Actualmente realizando "Argentina Programa 2.0".</p>
+           </section>
+
+        <section class="cajaFormacion seccion">
+        	<div>
+              	<h1> Experiencia </h1>
+            	<!-- Formacion hijos -->
+				<div class="listaExperiencia">
+					<!-- hijo 1 -->
+					<div>
+						<img src="images/backendDev.png" alt="Foto backend">
+						<div class="textoFormacion">
+							<h2> Backend Developer </h2>
+							<p> Jornada parcial <br>
+							2021 - 2023 <br> 
+							Buenos Aires, Argentina.
+							</p>
+						</div>
+					</div>
+					<!-- hijo 2 -->
+					<div>
+						<img src="images/frontendDev.png" alt="Foto backend">
+						<div class="textoFormacion">
+							<h2> FrontEnd Developer </h2>
+							<p> Jornada parcial <br>
+							2022 - 2025 <br> 
+							Buenos Aires, Argentina.
+							</p>
+						</div>
+					</div>
+				</div>
+            </div>
+
+            <div>
+            	<h1> Educación </h1>
+            	<div class="listaEducacion">
+					<div>
+              			<img src="images/unlp.png" alt="Foto unlp informatica">
+						<div class="textoFormacion">
+              				<h2> UNLP</h2>
+              				<p> Licenciatura en sistemas. <br>
+                  			2021 - Actualidad
+              				</p>
+						</div>
+            		</div>
+            		<div>
+              			<img src="images/LOGOS-ONU.png" alt="Foto cnlp">
+						<div class="textoFormacion">
+              				<h2> Colegio Nacional Rafael Hernandez </h2>
+              				<p>  2014 - 2020 </p>
+						</div>
+            		</div> 
+				</div>
+          	</div>
+        </section>
+
+		<section class="cajaSkills">
+			<div>
+				<h1> Hard Skills & Soft Skills </h1>
+			</div>
+			<!-- Cards -->
+			<div class="cartas">
+        <div class="contenido">
+				  <div class="carta">
+            <div class="chart" data-percent="87" data-scale-color="#ffb400"><p>87%</p> </div>
+            <div class="cuerpo_carta">
+                <h4>JavaScript</h4>
+                <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+            </div>
+          </div>
+
+          <div class="carta">
+            <div class="chart" data-percent="17" data-scale-color="#ffb400"><p>17%</p> </div>
+            <div class="cuerpo_carta">
+                <h4>Python</h4>
+                <p>Python (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
+            </div>
+          </div>
+
+          <div class="carta">
+            <div class="chart" data-percent="76" data-scale-color="#ffb400"><p>76%</p> </div>
+            <div class="cuerpo_carta">
+                <h4>Java</h4>
+                <p> Java es un lenguaje de programación ampliamente utilizado para codificar aplicaciones web. </p>
+            </div>
+          </div>
+
+          <div class="carta">
+            <div class="chart" data-percent="92" data-scale-color="#ffb400"><p>92%</p> </div>
+            <div class="cuerpo_carta">
+                <h4>Adaptabilidad</h4>
+                <p> La Adaptabilidad capacidad de modificar el comportamiento y adaptarse a diferentes situaciones y personas de forma rápida y adecuada. </p>
+            </div>
+          </div>
+
+          <div class="carta">
+            <div class="chart" data-percent="78" data-scale-color="#ffb400"><p>78%</p> </div>
+            <div class="cuerpo_carta">
+                <h4>Flexibilidad</h4>
+                <p> La flexibilidad es una soft skill  importante, ya que demuestra la capacidad y la voluntad de aceptar nuevas tareas y nuevos desafíos con calma y sin complicaciones. </p>
+            </div>
+          </div>
+
+          <div class="carta">
+            <div class="chart" data-percent="80" data-scale-color="#ffb400"><p>80%</p> </div>
+            <div class="cuerpo_carta">
+                <h4>Resolución de problemas</h4>
+                <p> La Resolución de problemas es la capacidad de la persona para solventar cualquier dificultad que pueda generarse, ya sea prevista o inesperada, y sobre escenarios y circunstancias reales. </p>
+            </div>
+          </div>
+
+        </div>
+			</div>
+    </section>  
+
+    <!----- Proyectos ----->
+    <section class="cajaProyectos">
+      <div> 
+        <h1> Proyectos </h1>
+      </div>
+      <div>
+        <h2 class="titulosProyectos"> e-Farmacia </h2>
+        <p> Desarrollamos un sitio web de comercio electronico FrontEnd trabajado en Angular con un diseño innovador e integrado con distintas tecnologías.</p>
+      </div>
+      <div>
+        <h2 class="titulosProyectos"> SistemArg </h2>
+        <p> Desarrollamos una red social basado en Angular de alto tráfico que permite ponerte en contacto con las personas correctas, ayudarte en tu posicionamiento profesional y contratar gente con el perfil indicado. Totalmente integrado con distintas tecnologías.</p>
+      </div>
+    </section>
+    <!----- Footer----->
+      <footer>
+        <div class="container p-3">
+          <div class="row text-center text-white">
+             <div class="col ml-auto">
+                <p>Derechos reservados &copy; 2022</p>
+             </div>
+          </div>
+        </div>
+      </footer>
+    </body>
+    <!----- JS ----->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!----- Iconos----->
+    <script src="https://kit.fontawesome.com/d943267156.js" crossorigin="anonymous"></script>
+</html>

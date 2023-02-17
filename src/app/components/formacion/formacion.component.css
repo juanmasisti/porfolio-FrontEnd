@@ -1,0 +1,32 @@
+.cajaFormacion{
+    border: 2px solid #929292;
+    border-radius: 10px;
+    padding-bottom: 6em;
+    background-color: rgb(241, 241, 241);
+    padding: 1em;
+  }
+  
+  .listaExperiencia img {
+    width: 7em;
+    height: 7em;
+  }
+  
+  .listaEducacion img {
+    width: 12em;
+    height: 7em;
+  }
+  
+  .cajaFormacion h2 {
+    font-size: 1em;
+  }
+  
+  .listaExperiencia > *, .listaEducacion > *{
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+  }
+  
+  .textoFormacion{
+    padding: 1em;
+  }
+  

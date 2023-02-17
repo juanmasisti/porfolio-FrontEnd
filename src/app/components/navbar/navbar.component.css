@@ -1,0 +1,27 @@
+i.fa-solid.fa-user.fa-2x,
+i.fa-brands.fa-twitter.fa-2x,
+i.fa-brands.fa-facebook.fa-2x,
+i.fa-brands.fa-instagram.fa-2x
+{
+color: rgb(255, 255, 255);
+}
+
+i.fa-brands.fa-twitter.fa-2x:hover{
+  color:rgb(13, 148, 206)
+}
+
+i.fa-brands.fa-facebook.fa-2x:hover{
+  color:rgb(29, 191, 216)
+}
+
+i.fa-brands.fa-instagram.fa-2x:hover{
+  color:rgb(27, 184, 219)
+}
+i.fa-solid.fa-user.fa-2x:hover{
+  color:rgb(28, 163, 225)
+}
+
+.list-group{
+    --bs-list-group-border-color:none;
+    --bs-list-group-bg:none;
+}

@@ -1,0 +1,13 @@
+.cajaSobreMi{
+    border: 2px solid #929292;
+    border-radius: 10px;
+    padding-bottom: 4em;
+    background-color: rgb(241, 241, 241);
+    padding: 1em;
+  }
+  
+  .cajaSobreMi p {
+    margin-top: 1em;
+    font-size: 1rem;
+  }
+  
