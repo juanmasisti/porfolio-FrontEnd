@@ -1,0 +1,38 @@
+<form 
+    class="add-form"
+    (ngSubmit)="onSubmit()"
+    *ngIf="showAddProject"
+>
+    <div class="form-control">
+        <label for="text">Proyecto</label>  
+        <input 
+        type="text" 
+        name="text" 
+        id="text" 
+        placeholder="Titulo del proyecto"
+        [(ngModel)]="titulo"
+        />
+    </div>
+
+    <div class="form-control"> 
+        <label for="day"> Descripción</label>
+        <input type="text" 
+        name="day" 
+        id="day" 
+        placeholder="Añadir descripción del proyecto" 
+        [(ngModel)]="texto"
+        />
+    </div>
+
+    <div class="form-control form-control-check"> 
+        <label for="reminder">Marcar</label>
+        <input type="checkbox" 
+        name="reminder" 
+        id="reminder"
+        [(ngModel)]="reminder"
+        />
+    </div>
+
+    <input type="submit" value="Save Project" class="btn btn-">
+
+</form>

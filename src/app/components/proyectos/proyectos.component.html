@@ -1,18 +1,23 @@
+<app-add-proyecto 
+  (onAddProject)="addProject($event)"
+></app-add-proyecto>
+
 <section class="cajaProyectos">
     <div> 
       <app-buttom 
-        color="green" 
-        text="Add Project">
+        color="{{showAddProject ? 'red' : 'green'}}" 
+        text="{{showAddProject ? 'Close project' : 'Add project'}}"
         (btnClick)="toggleAddProject()"
-      </app-buttom>
+      ></app-buttom>
       <h1> Proyectos </h1>
     </div>
+
     <div>
-      <h2 class="titulosProyectos"> e-Farmacia </h2>
-      <p> Desarrollamos un sitio web de comercio electronico FrontEnd trabajado en Angular con un diseño innovador e integrado con distintas tecnologías.</p>
-    </div>
-    <div>
-      <h2 class="titulosProyectos"> SistemArg </h2>
-      <p> Desarrollamos una red social basado en Angular de alto tráfico que permite ponerte en contacto con las personas correctas, ayudarte en tu posicionamiento profesional y contratar gente con el perfil indicado. Totalmente integrado con distintas tecnologías.</p>
+      <app-proyectos-item 
+      *ngFor="let proyecto of proyectos"
+        [proyecto] = "proyecto"
+        (onDeleteProyecto) = "deleteProyecto(proyecto)" 
+        (onToggleReminder)="toggleReminder(proyecto)" >
+      </app-proyectos-item>
     </div>
 </section>

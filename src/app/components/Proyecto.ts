@@ -1,6 +1,6 @@
 export interface Proyecto {
     id?: number // Cuando creamos podria no venir 
-    text: string;
-    day: string;
+    texto: string;
+    titulo: string;
     reminder: boolean;
 }

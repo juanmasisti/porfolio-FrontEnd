@@ -1,0 +1,16 @@
+<div 
+    class="proyectos"
+    [ngClass]="{ reminder : proyecto.reminder }"
+    (click)="onToggle(proyecto)"
+> 
+    <h3 class="titulosProyectos"> {{proyecto.titulo}} </h3>
+    <p>
+        {{proyecto.texto}} 
+        <fa-icon 
+            [icon]="faTimes"
+            [ngStyle]="{'color':'red'}"
+            (click) ="onDelete(proyecto)" >
+
+        ></fa-icon>
+    </p>
+</div>
