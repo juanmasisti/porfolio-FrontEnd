@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ProyectoService } from '../../services/proyecto.service';
-import {Proyecto} from '../Proyecto';
+import { Proyecto } from '../../Interfaces/Proyecto';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
 
@@ -11,45 +11,46 @@ import { Subscription } from 'rxjs';
 })
 export class ProyectosComponent {
   proyectos: Proyecto[] = [];
-
-  showAddProject: boolean = true;
+  project: Proyecto = {id: 0, titulo: "",parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
   subscription?: Subscription;
-
+  estado: boolean = false;
   constructor(
     private uiService:UiService,
     private proyectoService: ProyectoService
-  ) { 
-    this.subscription = this.uiService.onToggle()
-                              .subscribe(value => this.showAddProject = value)
-  }
+  ) {}
 
   ngOnInit(): void {
     // Like Promise
-    this.proyectoService.getProyecto().subscribe((proyectos)=>(
+    this.proyectoService.get().subscribe((proyectos)=>(
       this.proyectos = proyectos
   ))};
 
-  deleteProyecto(proyecto:Proyecto){
-    this.proyectoService.deleteProyecto(proyecto)
-    .subscribe(
-      () => {
-      this.proyectos = this.proyectos.filter( (t) => t.id !== proyecto.id)
-    })
-  }
+  public toggleFormProject() {
+		this.estado = !this.estado;
+		this.project = {titulo: "", parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+		this.uiService.toggleFormProject();
+	}
 
-  toggleReminder(proyecto:Proyecto){
-    proyecto.reminder = !proyecto.reminder
-    console.log(proyecto)
-  }
+	public deleteProject(project: Proyecto) {
+		this.proyectoService.delete(project).subscribe(() => {
+			this.proyectos = this.proyectos.filter( ele => ele.id !== project.id )
+		})
+	}
 
-  addProject(proyecto:Proyecto){
-    this.proyectoService.addProject(proyecto).subscribe((proyecto) => (
-      this.proyectos.push(proyecto)
-    ))
-  }
+	public editProject(project: Proyecto) {
+		this.proyectoService.edit(project).subscribe(() => {
+			let i: number = this.proyectos.findIndex(ele => ele.id == project.id);
+			this.proyectos[i] = project;
+		})
+	}
 
-  toggleAddProject(){
-    this.uiService.toggleAddProject();
-  }
+	public addProject(project: Proyecto) {
+		this.proyectoService.add(project).subscribe((project: Proyecto) => {
+			this.proyectos.push(project)
+		});
+	}
 
+	public editFormProject(project: Proyecto) {
+		this.project = project;
+	}
 }

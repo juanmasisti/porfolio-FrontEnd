@@ -1,16 +1,16 @@
-<div 
-    class="proyectos"
-    [ngClass]="{ reminder : proyecto.reminder }"
-    (click)="onToggle(proyecto)"
-> 
-    <h3 class="titulosProyectos"> {{proyecto.titulo}} </h3>
-    <p>
-        {{proyecto.texto}} 
-        <fa-icon 
-            [icon]="faTimes"
-            [ngStyle]="{'color':'red'}"
-            (click) ="onDelete(proyecto)" >
 
-        ></fa-icon>
-    </p>
+<div class="proyecto">
+    <img [src]="this.imageSource" [alt]="this.proyecto.img.titulo">
+    <div class="contenido">
+        <h3> <strong>{{proyecto.titulo}}</strong> 
+            <i class='bx bx-edit editar' 
+                (click)="onEdit(proyecto)"></i>
+            <i class='bx bx-x borrar'
+                (click)="onDelete(proyecto)"></i> 
+        </h3>
+        <p>{{proyecto.parrafo}}</p>
+        <div class="lista_links">
+            <a [href]="proyecto.linkPag"><i class='bx bx-link-external' ></i></a>
+        </div>
+    </div>
 </div>

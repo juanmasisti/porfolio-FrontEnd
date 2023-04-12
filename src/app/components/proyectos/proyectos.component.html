@@ -1,23 +1,29 @@
-<app-add-proyecto 
-  (onAddProject)="addProject($event)"
-></app-add-proyecto>
+
 
 <section class="cajaProyectos">
     <div> 
+      <h1 class = "subrayado"> Proyectos </h1>
       <app-buttom 
-        color="{{showAddProject ? 'red' : 'green'}}" 
-        text="{{showAddProject ? 'Close project' : 'Add project'}}"
-        (btnClick)="toggleAddProject()"
+        color="{{estado? 'red' : 'green'}}" 
+        text="{{estado? '-' : '+'}}"
+        (btnClick)="toggleFormProject()"
       ></app-buttom>
-      <h1> Proyectos </h1>
-    </div>
 
+      <app-add-proyecto 
+      (onAddProject)="addProject($event)"
+      (onEditProject)="editProject($event)"
+      (onToggleFormProject)="toggleFormProject()"
+      [proyecto]="project"
+      ></app-add-proyecto>
+    </div>
     <div>
       <app-proyectos-item 
-      *ngFor="let proyecto of proyectos"
-        [proyecto] = "proyecto"
-        (onDeleteProyecto) = "deleteProyecto(proyecto)" 
-        (onToggleReminder)="toggleReminder(proyecto)" >
-      </app-proyectos-item>
+      *ngFor="let project of proyectos; let i = index"
+          [proyecto] = "project"
+          (onDeleteProject)="deleteProject($event)"
+          (onEditFormProject)="editFormProject($event)"
+      ></app-proyectos-item>
     </div>
 </section>
+
+

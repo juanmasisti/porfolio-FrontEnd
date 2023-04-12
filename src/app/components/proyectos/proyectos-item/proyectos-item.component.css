@@ -1,21 +1,52 @@
-.titulosProyectos{
-    font-size: 1rem;
-    color: blue;
+.proyecto {
+    position: relative;
+    margin-top: 2em;
 }
 
-.proyectos {
-    margin: 5px;
-    padding: 10px 20px;
+.proyecto .contenido {
+    padding: 2em 0;
+}
+
+.proyecto .contenido > * {
+    margin-bottom: 1em;
+}
+
+.proyecto .contenido p {
+    word-wrap: break-word;
+    padding: 2em;
+    width: 55%;
+}
+
+.proyecto img {
+    max-width: 600px;
+    max-height: 300px;
+    min-height: 300px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+}
+
+.lista_links :first-child {
+    margin-right: .25em;
+}
+
+.lista_links i {
+    font-size: 1.5rem;
+    color: black;
+}
+
+h3 .editar {
+    margin-left: 0.5em;
+    font-size: 1.5rem;
+    color: green;
     cursor: pointer;
 }
 
-.reminder{
-    border-left: 5px solid green;
+h3 .borrar {
+    margin-left: 0.25em;
+    font-size: 1.5rem;
+    color: red;
+    cursor: pointer;
 }
-
-.proyectos.h3{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-

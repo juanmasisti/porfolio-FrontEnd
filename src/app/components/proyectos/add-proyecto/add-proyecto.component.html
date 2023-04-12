@@ -1,0 +1,70 @@
+<form 
+    *ngIf="showFormProject" [formGroup]="form"
+>
+    <i class='bx bx-x cerrar' (click)="onClose()"></i>
+    <h1>{{proyecto.id != null ? 'Editar' : 'Agregar'}} Proyecto</h1> 
+    <div class="form-control">
+        <label for="titulo">Titulo de Proyecto</label>
+        <input 
+            type="text" 
+            name="titulo" 
+            placeholder="Agregar titulo"
+            formControlName="titulo"
+        >
+        <div *ngIf="Titulo?.errors && Titulo?.touched" class="error">
+            <p *ngIf="Titulo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
+    </div>
+    <div class="form-control">
+        <label for="parrafo">Texto de explicacion</label>
+        <textarea 
+            type="text"  
+            name="parrafo" 
+            placeholder="Agregar parrafo"  
+            cols="40" rows="5"
+            maxlength="260"
+            formControlName="parrafo"
+        ></textarea>
+        <div *ngIf="Parrafo?.errors && Parrafo?.touched" class="error">
+            <p *ngIf="Parrafo?.hasError('required')">
+                El texto es requerido
+            </p>
+        </div>
+    </div>
+    
+    <div class="form-control">
+        <label for="linkPag">Sitio</label>
+        <input 
+            type="url" 
+            name="linkPag" 
+            id="linkPag" 
+            placeholder="Agregar link del Sitio"
+            formControlName="linkPag"
+        >
+        <div *ngIf="LinkPag?.errors && LinkPag?.touched" class="error">
+            <p *ngIf="LinkPag?.hasError('required')">
+                El link de la página es requerido
+            </p>
+        </div>
+    </div>
+    <div class="form-control">
+        <label for="img">Imagen</label>
+        <input type="file" style="display: none;"
+            (change)="onFileSelected($event)" #fileUpload>
+        <div class="file-upload">
+            <button mat-mini-fab color="primary" class="upload-btn"
+                (click)="fileUpload.click()">
+                <i class='bx bx-image-add'></i>
+            </button>
+            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+        </div>
+        <div *ngIf="Img?.errors && Img?.touched" class="error">
+            <p *ngIf="Img?.hasError('required')">
+                Una imagen es requerida
+            </p>
+        </div>
+    </div>
+    <input class="button-green" type="submit" [value]="proyecto.id != null ? 'Editar' : 'Agregar'" (click)="proyecto.id != null ? onEdit() : onAdd()">
+</form>

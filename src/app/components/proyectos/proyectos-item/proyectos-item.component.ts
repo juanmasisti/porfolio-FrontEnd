@@ -1,7 +1,7 @@
-import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
-import { Proyecto } from '../../Proyecto';
-import { Proyectos } from '../../mock-proyectos';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { UiService } from '../../../services/ui.service';
+import { Proyecto } from '../../../Interfaces/Proyecto';
 
 @Component({
   selector: 'app-proyectos-item',
@@ -9,22 +9,32 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./proyectos-item.component.css']
 })
 export class ProyectosItemComponent {
-  @Input() proyecto: Proyecto = Proyectos[0]
-  @Output() onDeleteProyecto: EventEmitter<Proyecto> = new EventEmitter()
-  @Output() onToggleReminder: EventEmitter<Proyecto> = new EventEmitter()
-  faTimes = faTimes;
-  constructor() { }
+  @Input() proyecto: Proyecto = {parrafo: "", titulo: "", linkPag:"", img: {titulo:"",tipo:"", base64:""}}
+  @Output() onDeleteProject: EventEmitter<Proyecto> = new EventEmitter();
+	@Output() onEditFormProject: EventEmitter<Proyecto> = new EventEmitter();
+  imageSource: any;
 
-  ngOnInit(): void {
+  constructor( 
+		private uiService: UiService,
+		private sanitizer: DomSanitizer
+	) {}
 
-  }
+  ngOnInit() : void {
+		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.proyecto.img.base64}`);
+	}
 
   onDelete(proyecto:Proyecto){
-    this.onDeleteProyecto.emit(proyecto)
+    this.onDeleteProject.emit(proyecto)
   }
 
-  onToggle(proyecto:Proyecto){
-    this.onToggleReminder.emit(proyecto)
-  }
+  public onEdit(proyecto:Proyecto) {
+		this.onEditFormProject.emit(proyecto);
+		this.uiService.toggleFormProject();
+	}
 
 }
+
+
+
+
+

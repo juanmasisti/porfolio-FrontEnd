@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -16,7 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { IndexComponent } from './components/index/index.component';
 import { ButtomComponent } from './components/proyectos/buttom/buttom.component';
 import { ProyectosItemComponent } from './components/proyectos/proyectos-item/proyectos-item.component';
-import { AddProyectoComponent } from './components/add-proyecto/add-proyecto.component';
+import { AddProyectoComponent } from './components/proyectos/add-proyecto/add-proyecto.component';
 
 const appRoutes: Routes = [
   {path: '', component: ProyectosComponent}
@@ -39,9 +39,11 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true})
   ],
   providers: [],
