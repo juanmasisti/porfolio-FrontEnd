@@ -21,14 +21,15 @@ export class ProyectosComponent {
 
   ngOnInit(): void {
     // Like Promise
-    this.proyectoService.get().subscribe((proyectos)=>(
-      this.proyectos = proyectos
-  ))};
+      this.proyectoService.get().subscribe((proyectos)=>(
+      this.proyectos = proyectos))
+	  this.subscription = this.uiService.onToggleButton().subscribe((estado)=> this.estado = estado);
+	};
 
   public toggleFormProject() {
-		this.estado = !this.estado;
 		this.project = {titulo: "", parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
 		this.uiService.toggleFormProject();
+		this.uiService.toggleButton();
 	}
 
 	public deleteProject(project: Proyecto) {

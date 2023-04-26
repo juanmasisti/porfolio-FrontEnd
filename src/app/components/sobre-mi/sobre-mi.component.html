@@ -1,4 +1,14 @@
 <section class="cajaSobreMi seccion">
+    <div class="edit">
     <h1 class = "subrayado"> Acerca de </h1>
-    <p> Estudiante de segundo año en analista de sistemas en la Universidad Nacional de La Plata, con distintos cursos realizados en desarrollo web. Actualmente realizando "Argentina Programa 2.0".</p>
+    <i class='bx bx-edit editar'  (click)="toggleFormSobreMi()"></i>
+    </div>
+    <p>{{this.sobremi.parrafo}}</p>
+
+    <app-add-sobremi
+        (onSubmitSobreMi)="editSobreMi($event)"
+        (onToggleFormSobreMi)="toggleFormSobreMi()"
+        [sobremi] = "sobremi"
+    > </app-add-sobremi>
+
 </section>

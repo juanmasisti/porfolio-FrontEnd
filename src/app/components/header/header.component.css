@@ -32,7 +32,6 @@ header {
     position: absolute;
     bottom: -100px;
     left: 25px;
-    background-image: url("../../../assets/img/gato.jpg");
     background-size: cover;
     background-position: center;
     border-radius: 50%;

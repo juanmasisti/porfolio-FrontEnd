@@ -1,0 +1,56 @@
+<form 
+    *ngIf="showHeader" [formGroup]="form" (ngSubmit)="submit()"
+>
+    <i class='bx bx-x cerrar' (click)="onClose()"></i>
+    <h1>Editar Header</h1>
+
+    <div class="form-control">
+        <label for="nombre">Nombre</label>
+        <input 
+            type="text" 
+            name="nombre" 
+            placeholder="Agregar nombre"
+            formControlName="nombre"
+        >
+        <div *ngIf="Nombre?.errors && Nombre?.touched" class="error">
+            <p *ngIf="Nombre?.hasError('required')">
+                El nombre es requerido
+            </p>
+        </div>
+    </div>
+    
+    <div class="form-control">
+        <label for="Header">Descripción</label>
+        <textarea 
+            type="text"  
+            name="parrafo" 
+            placeholder="Agregar descipción"  
+            cols="40" rows="5"
+            maxlength="260"
+            formControlName="parrafo"
+        ></textarea>
+    </div>
+    
+    <div class="form-control">
+        <label for="img">Imagen</label>
+        <input type="file" 
+            style="display: none;"
+            (change)="onFileSelected($event)" #fileUpload
+            formGroupName="img"
+        >
+        <div class="file-upload">
+            <button type="button" mat-mini-fab color="primary" class="upload-btn"
+                (click)="fileUpload.click()">
+                <i class='bx bx-folder-plus'></i>
+            </button>
+            {{ this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+        </div>
+        <div *ngIf="Img?.errors && Img?.touched" class="error">
+            <p *ngIf="Img?.hasError('required')">
+                Una imagen es requerida
+            </p>
+        </div>
+    </div>
+
+    <input class="button-green" type="submit" value="Editar">
+</form>

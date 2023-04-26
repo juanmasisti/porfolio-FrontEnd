@@ -54,3 +54,17 @@ p {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
   line-height: 1.5;
 }
+
+.caja_titulo {
+  display: flex;
+  margin: 1em 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit{
+  display: flex;
+  margin: 1em 0;
+  align-items: center;
+  justify-content: space-between;
+}

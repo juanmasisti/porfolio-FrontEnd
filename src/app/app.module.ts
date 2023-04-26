@@ -17,6 +17,13 @@ import { IndexComponent } from './components/index/index.component';
 import { ButtomComponent } from './components/proyectos/buttom/buttom.component';
 import { ProyectosItemComponent } from './components/proyectos/proyectos-item/proyectos-item.component';
 import { AddProyectoComponent } from './components/proyectos/add-proyecto/add-proyecto.component';
+import { AddSkillComponent } from './components/skills/add-skill/add-skill.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { ItemSkillComponent } from './components/skills/item-skill/item-skill.component';
+import { AddFormacionComponent } from './components/formacion/add-formacion/add-formacion.component';
+import { ItemFormacionComponent } from './components/formacion/item-formacion/item-formacion.component';
+import { AddSobremiComponent } from './components/sobre-mi/add-sobremi/add-sobremi.component';
+import { AddHeaderComponent } from './components/header/add-header/add-header.component';
 
 const appRoutes: Routes = [
   {path: '', component: ProyectosComponent}
@@ -35,7 +42,13 @@ const appRoutes: Routes = [
     IndexComponent,
     ButtomComponent,
     ProyectosItemComponent,
-    AddProyectoComponent
+    AddProyectoComponent,
+    AddSkillComponent,
+    ItemSkillComponent,
+    AddFormacionComponent,
+    ItemFormacionComponent,
+    AddSobremiComponent,
+    AddHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +57,15 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true})
+    RouterModule.forRoot(appRoutes, {enableTracing: true}),
+    NgCircleProgressModule.forRoot({
+			radius: 100,
+			outerStrokeWidth: 16,
+			innerStrokeWidth: 8,
+			outerStrokeColor: "#78C000",
+			innerStrokeColor: "#C7E596",
+			animationDuration: 300,
+		})
   ],
   providers: [],
   bootstrap: [AppComponent]

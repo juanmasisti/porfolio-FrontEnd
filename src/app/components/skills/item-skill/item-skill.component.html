@@ -1,0 +1,27 @@
+<div class="carta">
+    <circle-progress
+        class="chart"
+        [percent]="skill.porcentaje"
+        [radius]="90"
+        [outerStrokeWidth]="12"
+        [outerStrokeColor]="'#2E87D6'"
+        [innerStrokeColor]="'#D6D1CD'"
+        [animation]="true"
+        [animationDuration]="1000"
+        [showSubtitle]="false"
+        [titleFontSize]="'4rem'"
+        [unitsFontSize]="'2rem'"
+        [renderOnClick]="false"
+    ></circle-progress>
+    <div class="cuerpo_carta">
+        <div class="titulo">
+            <h4>{{skill.titulo}}</h4>
+            <i class='bx bx-edit editar'
+                (click)="onEdit(skill)"></i>
+            <i class='bx bx-x borrar'
+                (click)="onDelete(skill)"
+            ></i> 
+        </div>
+        <p>{{skill.parrafo}}</p>
+    </div>
+</div>

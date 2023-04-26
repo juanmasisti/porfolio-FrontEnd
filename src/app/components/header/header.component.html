@@ -1,14 +1,38 @@
 <header >
-    <div class="cajaHeader">
-      <div class="circle"> </div> 
-      <div>
-        <h1> Portfolio Web </h1>
-        <p> Juan Manuel Sisti</p>
-      </div>
+  
+  <div class="cajaHeader">
+    <div> <div class="circle" >  <img [src]="this.imageSource" class="circle-img"> </div> 
+      <h1> Portfolio Web </h1>
+      <p> Juan Manuel Sisti</p>
     </div>
-    <div class="pieFoto">
-      <h1> Juan Manuel Sisti </h1>
-      <h2 class="subrayado"> Full Stack Developer Jr.</h2>
-      <a href="../../../assets/img/gato.jpg"> Informacion de contacto </a>
-   </div> 
-</header>
+  </div>
+
+  <style>
+    .circle-img {
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+
+
+  <div class="pieFoto" >
+    <div>
+      <i class='bx bx-edit editar'  (click)="toggleFormHeader()"></i>
+      <h1> {{this.header.nombre}} </h1>
+    </div>
+
+    <p><i>{{this.header.parrafo}}</i></p>
+    <a href="info.html"> Informacion de contacto </a>
+  </div>
+
+ <app-add-header
+      (onSubmitHeader)="editHeader($event)"
+      (onToggleFormHeader)="toggleFormHeader()"
+      [header] = "header"
+  >   
+  </app-add-header>
+
+
+</header> 

@@ -1,0 +1,14 @@
+<div class="formacion">
+    <img [src]="this.imageSource" [alt]="this.formacion.img.titulo"> 
+    <div class="contenido">
+        <h3> <strong>{{formacion.titulo}}</strong> 
+            <i class='bx bx-edit editar' 
+                (click)="onEdit(formacion)"></i>
+            <i class='bx bx-x borrar'
+                (click)="onDelete(formacion)"></i> 
+        </h3>
+        <p> <i>({{getDate()}})</i> </p>
+        <p>{{formacion.parrafo}}</p>
+       
+    </div>
+</div>

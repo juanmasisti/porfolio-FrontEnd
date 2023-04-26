@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
 	providedIn: 'root'
 })
-export class ProyectoService extends baseDatos{
+export class FormacionService extends baseDatos{
 	constructor(
 		http:HttpClient
 	) { 
 		super(http)
-		this.apiUrl += "proyectos";
+		this.apiUrl += "formacion";
 	}
 }

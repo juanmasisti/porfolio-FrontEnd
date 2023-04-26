@@ -34,19 +34,19 @@
 
 .lista_links i {
     font-size: 1.5rem;
-    color: black;
+    color: rgb(145, 51, 51);
 }
 
 h3 .editar {
     margin-left: 0.5em;
     font-size: 1.5rem;
-    color: green;
+    color: rgb(228, 189, 18);
     cursor: pointer;
 }
 
 h3 .borrar {
     margin-left: 0.25em;
     font-size: 1.5rem;
-    color: red;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }

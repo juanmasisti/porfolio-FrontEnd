@@ -1,21 +1,22 @@
 
 
 <section class="cajaProyectos">
-    <div> 
+    <div class="caja_titulo"> 
       <h1 class = "subrayado"> Proyectos </h1>
       <app-buttom 
         color="{{estado? 'red' : 'green'}}" 
         text="{{estado? '-' : '+'}}"
         (btnClick)="toggleFormProject()"
       ></app-buttom>
-
-      <app-add-proyecto 
-      (onAddProject)="addProject($event)"
-      (onEditProject)="editProject($event)"
-      (onToggleFormProject)="toggleFormProject()"
-      [proyecto]="project"
-      ></app-add-proyecto>
     </div>
+    
+    <app-add-proyecto 
+    (onAddProject)="addProject($event)"
+    (onEditProject)="editProject($event)"
+    (onToggleFormProject)="toggleFormProject()"
+    [proyecto]="project"
+    ></app-add-proyecto>
+    
     <div>
       <app-proyectos-item 
       *ngFor="let project of proyectos; let i = index"

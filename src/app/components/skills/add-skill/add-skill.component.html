@@ -1,0 +1,53 @@
+<form 
+*ngIf="showFormSkill" [formGroup]="form" 
+>
+    <i class='bx bx-x' (click)="onClose()"></i>
+    <h1>{{skill.id ? 'Editar' : 'Agregar'}} Habilidad</h1> 
+    <div class="form-control">
+        <label for="titulo">Titulo de habilidad</label>
+        <input 
+            type="text" 
+            name="titulo" 
+            placeholder="Agregar titulo"
+            formControlName="titulo"
+        >
+        <div *ngIf="Titulo?.errors && Titulo?.touched" class="error">
+            <p *ngIf="Titulo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
+    </div>
+    <div class="form-control">
+        <label for="parrafo">Texto de explicacion</label>
+        <textarea 
+            type="text"  
+            name="parrafo" 
+            placeholder="Agregar parrafo"
+            cols="30" rows="5"
+            maxlength="300"
+            formControlName="parrafo"
+        ></textarea>
+        <div *ngIf="Parrafo?.errors && Parrafo?.touched" class="error">
+            <p *ngIf="Parrafo?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
+    </div>
+    <div class="form-control">
+        <label for="porcentaje">Porcentaje</label>
+        <input 
+            type="number" 
+            name="porcentaje" 
+            ngValue=12
+            placeholder="Agregar porcentaje"
+            formControlName="porcentaje"
+        >
+        <div *ngIf="Porcentaje?.errors && Porcentaje?.touched" class="error">
+            <p *ngIf="Porcentaje?.hasError('required')">
+                El titulo es requerido
+            </p>
+        </div>
+    </div>
+
+    <input class="button-green" type="submit" [value]="skill.id != null ? 'Editar' : 'Agregar'" (click)="skill.id != null ? onEdit() : onAdd()">
+</form>

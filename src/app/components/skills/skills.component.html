@@ -1,58 +1,31 @@
+
 <section class="cajaSkills">
-    <div>
-        <h1 class = "subrayado"> Hard Skills & Soft Skills </h1>
-    </div>
-    <!-- Cards -->
-    <div class="cartas">
-<div class="contenido">
-          <div class="carta">
-    <div class="chart" data-percent="87" data-scale-color="#ffb400"><p>87%</p> </div>
-    <div class="cuerpo_carta">
-        <h4>JavaScript</h4>
-        <p>JavaScript (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-    </div>
+  <div class="caja_titulo">
+      <h1 class = "subrayado"> Hard Skills & Soft Skills </h1>
+      <app-buttom 
+      color="{{estado? 'red' : 'green'}}" 
+      text="{{estado? '-' : '+'}}"
+      (btnClick)="toggleFormSkill()"
+    ></app-buttom>
   </div>
+  
+  <app-add-skill
+      (onAddSkill)="addSkill($event)"
+      (onEditSkill)="editSkill($event)"
+      (onToggleFormSkill)="toggleFormSkill()"
+      [skill]="skill"
+  ></app-add-skill>
 
-  <div class="carta">
-    <div class="chart" data-percent="17" data-scale-color="#ffb400"><p>17%</p> </div>
-    <div class="cuerpo_carta">
-        <h4>Python</h4>
-        <p>Python (abreviado comúnmente JS) es un lenguaje de programación interpretado, dialecto del estándar ECMAScript. </p>
-    </div>
+  <!-- Cards -->
+<div class="cartas">
+  <div class="contenido">
+          <app-item-skill 
+          *ngFor="let skill of getSkills()" 
+          [skill] = "skill"
+          (onDeleteSkill)="deleteSkill(skill)"
+          (onEditFormSkill)="editFormSkill(skill)"
+          >
+          </app-item-skill>
   </div>
-
-  <div class="carta">
-    <div class="chart" data-percent="76" data-scale-color="#ffb400"><p>76%</p> </div>
-    <div class="cuerpo_carta">
-        <h4>Java</h4>
-        <p> Java es un lenguaje de programación ampliamente utilizado para codificar aplicaciones web. </p>
-    </div>
-  </div>
-
-  <div class="carta">
-    <div class="chart" data-percent="92" data-scale-color="#ffb400"><p>92%</p> </div>
-    <div class="cuerpo_carta">
-        <h4>Adaptabilidad</h4>
-        <p> La Adaptabilidad capacidad de modificar el comportamiento y adaptarse a diferentes situaciones y personas de forma rápida y adecuada. </p>
-    </div>
-  </div>
-
-  <div class="carta">
-    <div class="chart" data-percent="78" data-scale-color="#ffb400"><p>78%</p> </div>
-    <div class="cuerpo_carta">
-        <h4>Flexibilidad</h4>
-        <p> La flexibilidad es una soft skill  importante, ya que demuestra la capacidad y la voluntad de aceptar nuevas tareas y nuevos desafíos con calma y sin complicaciones. </p>
-    </div>
-  </div>
-
-  <div class="carta">
-    <div class="chart" data-percent="80" data-scale-color="#ffb400"><p>80%</p> </div>
-    <div class="cuerpo_carta">
-        <h4>Resolución de problemas</h4>
-        <p> La Resolución de problemas es la capacidad de la persona para solventar cualquier dificultad que pueda generarse, ya sea prevista o inesperada, y sobre escenarios y circunstancias reales. </p>
-    </div>
-  </div>
-
 </div>
-    </div>
-</section>  
+</section> 

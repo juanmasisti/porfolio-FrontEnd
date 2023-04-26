@@ -1,0 +1,43 @@
+.carta {
+    border: 2px solid #d1d1d1;
+    border-radius: 10px;
+    box-shadow: 0px 5px 3px #d1d1d1;
+    animation: carta_hover_terminada 0.5s ease-in-out 0s forwards;
+    transition: 0.5s;
+}
+
+.carta:is(:hover, :focus) {
+    transform: scale(1.020);
+    box-shadow: 0px 12px 8px #d1d1d1;   
+}
+
+
+.chart {
+    padding: .25em;
+    font-family: 'Bitter', serif;
+    display: flex;
+    justify-content: center;
+}
+
+.cuerpo_carta {
+    padding: .75em;
+    border-top: 2px solid #d1d1d1;
+}
+
+.titulo .editar {
+    margin-left: auto;
+    font-size: 1.25rem;
+    color: rgb(228, 189, 18);
+    cursor: pointer;
+}
+
+.titulo .borrar {
+    margin-left: 0.25em;
+    font-size: 1.25rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.carta p {
+    overflow-wrap: break-word;
+}

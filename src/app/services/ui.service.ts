@@ -7,17 +7,21 @@ import {Observable, Subject} from 'rxjs';
 export class UiService {
   private showFormSkill: boolean = false;
 	private showFormProject: boolean = false;
-	private showFormEducation: boolean = false;
-	private showFormAbout: boolean = false;
+	private showFormFormacion: boolean = false;
+	private showFormSobreMi: boolean = false;
 	private showFormExperience: boolean = false;
+	private showFormHeader: boolean = false;
 
 	private showFormSkillSubj = new Subject<any>();
 	private showFormProjectSubj = new Subject<any>();
-	private showFormEducationSubj = new Subject<any>();
-	private showFormAboutSubj = new Subject<any>();
+	private showFormFormacionSubj = new Subject<any>();
+	private showFormSobreMiSubj = new Subject<any>();
 	private showFormExperienceSubj = new Subject<any>();
+	private showFormHeaderSubj = new Subject<any>();
 
-	private showEdit: boolean = false;
+
+	private estado: boolean = false;
+	private estadoSubj = new Subject<any>();
 	private showEditSubj = new Subject<any>();
 
   private renderer: Renderer2;
@@ -36,6 +40,11 @@ export class UiService {
 		}
 	}
 	
+	public toggleButton(): void {
+		this.estado = !this.estado;
+		this.estadoSubj.next(this.estado);
+	}
+
 	public toggleFormSkill(): void {
 		this.overlay(this.showFormSkill);
 		this.showFormSkill = !this.showFormSkill;
@@ -48,16 +57,16 @@ export class UiService {
 		this.showFormProjectSubj.next(this.showFormProject);
 	}
 
-	public toggleFormEducation(): void {
-		this.overlay(this.showFormEducation);
-		this.showFormEducation = !this.showFormEducation;
-		this.showFormEducationSubj.next(this.showFormEducation);
+	public toggleFormFormacion(): void {
+		this.overlay(this.showFormFormacion);
+		this.showFormFormacion = !this.showFormFormacion;
+		this.showFormFormacionSubj.next(this.showFormFormacion);
 	}
 
-	public toggleFormAbout(): void {
-		this.overlay(this.showFormAbout);
-		this.showFormAbout = !this.showFormAbout;
-		this.showFormAboutSubj.next(this.showFormAbout);
+	public toggleFormSobreMi(): void {
+		this.overlay(this.showFormSobreMi);
+		this.showFormSobreMi = !this.showFormSobreMi;
+		this.showFormSobreMiSubj.next(this.showFormSobreMi);
 	}
 
 	public toggleFormExperience(): void {
@@ -65,6 +74,16 @@ export class UiService {
 		this.showFormExperience = !this.showFormExperience;
 		this.showFormExperienceSubj.next(this.showFormExperience);
 	}
+
+	public toggleFormHeader(): void {
+		this.overlay(this.showFormHeader);
+		this.showFormHeader = !this.showFormHeader;
+		this.showFormHeaderSubj.next(this.showFormHeader);
+	}
+
+	public onToggleFormHeader(): Observable<any> {
+		return this.showFormHeaderSubj.asObservable();
+	} 
 
 	public onToggleFormSkill(): Observable<any> {
 		return this.showFormSkillSubj.asObservable();
@@ -74,12 +93,12 @@ export class UiService {
 		return this.showFormProjectSubj.asObservable();
 	} 
 
-	public onToggleFormEducation(): Observable<any> {
-		return this.showFormEducationSubj.asObservable();
+	public onToggleFormFormacion(): Observable<any> {
+		return this.showFormFormacionSubj.asObservable();
 	}
 
-	public onToggleFormAbout(): Observable<any> {
-		return this.showFormAboutSubj.asObservable();
+	public onToggleFormSobreMi(): Observable<any> {
+		return this.showFormSobreMiSubj.asObservable();
 	}
 
 	public onToggleFormExperience(): Observable<any> {
@@ -89,4 +108,8 @@ export class UiService {
 	public onToggleEdit(): Observable<any> {
 		return this.showEditSubj.asObservable();
 	} 
+
+	public onToggleButton(): Observable<any>{
+		return this.estadoSubj.asObservable();
+	}
 }

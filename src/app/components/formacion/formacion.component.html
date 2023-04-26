@@ -1,52 +1,40 @@
 <section class="cajaFormacion seccion">
-     <div>
-           <h1 class="subrayado"> Experiencia </h1>
-         <!-- Formacion hijos -->
-         <div class="listaExperiencia">
-             <!-- hijo 1 -->
-             <div>
-                 <img src="../../../assets/img/backendDev.png" alt="Foto Backend">
-                 <div class="textoFormacion">
-                     <h2> Backend Developer </h2>
-                     <p> Jornada parcial <br>
-                     2021 - 2023 <br> 
-                     Buenos Aires, Argentina.
-                     </p>
-                 </div>
-             </div>
-             <!-- hijo 2 -->
-             <div>
-                 <img src="../../../assets/img/frontendDev.png" alt="Foto Frontend">
-                 <div class="textoFormacion">
-                     <h2> FrontEnd Developer </h2>
-                     <p> Jornada parcial <br>
-                     2022 - 2025 <br> 
-                     Buenos Aires, Argentina.
-                     </p>
-                 </div>
-             </div>
-         </div>
-     </div>
+     <div >
+          <div class="caja_titulo">
+               <h1 class = "subrayado"> Formación </h1>
+               <app-buttom 
+               color="{{estado? 'red' : 'green'}}" 
+               text="{{estado? '-' : '+'}}"
+               (btnClick)="toggleFormFormacion()"
+               ></app-buttom>
+          </div>
 
-     <div>
-         <h1 class = "subrayado"> Educación </h1>
-         <div class="listaEducacion">
-             <div>
-                   <img src="../../../assets/img/unlp.png" alt="Foto unlp informatica">
-                 <div class="textoFormacion">
-                       <h2> UNLP</h2>
-                       <p> Licenciatura en sistemas. <br>
-                       2021 - Actualidad
-                       </p>
-                 </div>
-             </div>
-             <div>
-                   <img src="../../../assets/img/LOGOS-ONU.png" alt="Foto cnlp">
-                 <div class="textoFormacion">
-                       <h2> Colegio Nacional Rafael Hernandez </h2>
-                       <p>  2014 - 2020 </p>
-                 </div>
-             </div> 
-         </div>
-       </div>
- </section>
+    
+          <app-add-formacion
+               (onAddFormacion)="addFormacion($event)"
+               (onEditFormacion)="editFormacion($event)"
+               (onToggleFormFormacion)="toggleFormFormacion()"
+               [formacion]="formacion"
+          > </app-add-formacion>
+     </div>
+     <div >
+          <h2 class = "subrayado"> Educación </h2>
+          <ul class="lista_educacion">
+          <app-item-formacion
+               *ngFor="let formacion of getEducacion()"
+               [formacion] = "formacion"
+               (onDeleteFormacion)="deleteFormacion(formacion)"
+               (onEditFormacion)="editFormFormacion(formacion)"
+          > </app-item-formacion> 
+          </ul>
+          <h2 class = "subrayado"> Experiencia </h2>
+          <ul class="lista_educacion">
+          <app-item-formacion
+               *ngFor="let formacion of getExperiencia()"
+               [formacion] = "formacion"
+               (onDeleteFormacion)="deleteFormacion(formacion)"
+               (onEditFormacion)="editFormFormacion(formacion)"
+          > </app-item-formacion>
+          </ul>
+     </div>
+</section>

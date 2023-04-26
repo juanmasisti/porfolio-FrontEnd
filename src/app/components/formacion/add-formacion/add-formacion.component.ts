@@ -2,43 +2,47 @@ import { Component, OnInit, Output, EventEmitter, SimpleChanges, Input} from '@a
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UiService } from 'src/app/services/ui.service';
-import { Proyecto } from '../../../Interfaces/Proyecto';
+import { Formacion } from '../../../Interfaces/Formacion';
 
 @Component({
-  selector: 'app-add-proyecto',
-  templateUrl: './add-proyecto.component.html',
-  styleUrls: ['./add-proyecto.component.css']
+  selector: 'app-add-formacion',
+  templateUrl: './add-formacion.component.html',
+  styleUrls: ['./add-formacion.component.css']
 })
-export class AddProyectoComponent{
-  @Output() onAddProject: EventEmitter<Proyecto> = new EventEmitter();
-  @Output() onEditProject: EventEmitter<Proyecto> = new EventEmitter();
-  @Output() onToggleFormProject: EventEmitter<Event> = new EventEmitter();
-  @Input() proyecto: Proyecto = {titulo: "", parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
-  subscription?: Subscription;
-  showFormProject: boolean = false;
-  form: FormGroup;
+export class AddFormacionComponent {
+  @Output() onAddFormacion: EventEmitter<Formacion> = new EventEmitter();
+	@Output() onEditFormacion: EventEmitter<Formacion> = new EventEmitter();
+	@Output() onToggleFormFormacion: EventEmitter<Event> = new EventEmitter();
+	@Input() formacion: Formacion = {titulo: "", parrafo: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}, eleccion: ""}
+	showFormFormacion: boolean = false;
+	subscription?: Subscription;
+	form: FormGroup;
 
   constructor(
     private uiService: UiService,
     private formBuilder: FormBuilder
   ) { 
-    this.subscription = this.uiService.onToggleFormProject().subscribe( value => this.showFormProject = value );
+    this.subscription = this.uiService.onToggleFormFormacion().subscribe( value => this.showFormFormacion = value );
 		this.form = this.formBuilder.group({
 			id: [],
 			titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			linkPag: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			periodo: this.formBuilder.group({
+        inicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+				fin: new FormControl('', {updateOn: 'blur'}),
+      }) ,
 			img: this.formBuilder.group({
 				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 				tipo: new FormControl('', {updateOn: 'blur'}),
 				base64: new FormControl('', {updateOn: 'blur'})
-			})
+			}) ,
+      eleccion: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 		})
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes['proyecto']?.currentValue)  {
-			this.form?.patchValue(this.proyecto);
+		if (changes['formacion']?.currentValue)  {
+			this.form?.patchValue(this.formacion);
 		}
 	}
 
@@ -50,16 +54,23 @@ export class AddProyectoComponent{
 		return this.form.get("parrafo");
 	}
 		
-	get LinkPag(){
-		return this.form.get("linkPag");
+	get Inicio(){
+		return this.form.get("periodo")?.get("inicio");	
+	}
+
+	get Fin(){
+		return this.form.get("periodo")?.get("fin");	
 	}
 
 	get Img(){
 		return this.form.get("img")?.get("titulo");	
 	}
+  get eleccion(){
+		return this.form.get("eleccion");
+	}
 
 	public onClose(): void {
-		this.onToggleFormProject.emit();
+		this.onToggleFormFormacion.emit();
 		this.form.reset();
 	}
 
@@ -81,9 +92,10 @@ export class AddProyectoComponent{
 	}
 
 	public onAdd(): void {
+		console.log(this.form.value)
 		if (this.form.valid) {
-			this.onAddProject.emit(this.form.getRawValue());
-			this.onToggleFormProject.emit();
+			this.onAddFormacion.emit(this.form.getRawValue());
+			this.onToggleFormFormacion.emit();
 			this.form.reset()
 			alert("Operación realizada con éxito!")
 		} else {
@@ -94,8 +106,8 @@ export class AddProyectoComponent{
 
 	public onEdit(): void {
 		if (this.form.valid) {
-			this.onEditProject.emit(this.form.getRawValue());
-			this.onToggleFormProject.emit();
+			this.onEditFormacion.emit(this.form.getRawValue());
+			this.onToggleFormFormacion.emit();
 			this.form.reset()
 			alert("Operación realizada con éxito!")
 		} else {

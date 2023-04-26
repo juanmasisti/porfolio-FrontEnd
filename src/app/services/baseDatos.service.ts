@@ -13,7 +13,7 @@ const httpOptions = {
 	providedIn: 'root'
 })
 
-export abstract class getDB {
+export abstract class baseDatos {
 	protected apiUrl: string = "http://localhost:3000/"
 
 	constructor(

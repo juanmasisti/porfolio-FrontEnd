@@ -1,0 +1,45 @@
+.formacion {
+    position: relative;
+    margin: 2.5em 0;
+    display: flex;
+    column-gap: 1.5em;
+}
+
+.formacion .contenido > * {
+    margin-bottom: 0.25em; 
+}
+
+.formacion .contenido p {
+    width: 52%;  
+    height: auto;
+
+}
+
+
+.formacion img {
+    width: 250px;
+    height: 200px;
+}
+
+.lista_links :first-child {
+    margin-right: .25em;
+}
+
+.lista_links i {
+    font-size: 1.5rem;
+    color: black;
+}
+
+h3 .editar {
+    margin-left: 0.5em;
+    font-size: 1.5rem;
+    color: rgb(228, 189, 18);
+    cursor: pointer;
+}
+
+h3 .borrar {
+    margin-left: 0.25em;
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}

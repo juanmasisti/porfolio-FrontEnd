@@ -1,0 +1,20 @@
+<form 
+    *ngIf="showSobreMi" [formGroup]="form" (ngSubmit)="submit()"
+>
+    <i class='bx bx-x cerrar' (click)="onClose()"></i>
+    <h1>Editar Acerca de</h1>
+
+    <div class="form-control">
+        <label for="SobreMi">Texto acerca de mi</label>
+        <textarea 
+            type="text"  
+            name="parrafo" 
+            placeholder="Agregar Texto"  
+            cols="40" rows="5"
+            maxlength="260"
+            formControlName="parrafo"
+        ></textarea>
+    </div>
+    
+    <input class="button-green" type="submit" value="Editar">
+</form>
