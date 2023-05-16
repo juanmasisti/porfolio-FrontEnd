@@ -7,7 +7,7 @@ import { Formacion } from '../Interfaces/Formacion';
 	providedIn: 'root'
 })
 export class FormacionService {
-	url = 'http://localhost:8080/formacion/'
+	url = 'https://backend-juei.onrender.com/formacion/'
 	constructor(private httpClient:HttpClient) { 
 	
 	}

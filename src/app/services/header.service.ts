@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
    providedIn: 'root'
 })
 export class HeaderService {
-    url = 'http://localhost:8080/header/';
+    url = 'https://backend-juei.onrender.com/header/';
 
 	constructor(private httpClient:HttpClient) {}
 

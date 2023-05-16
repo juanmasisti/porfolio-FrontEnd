@@ -1,4 +1,4 @@
-export class persona{
+export class Persona{
     id?: number;
     banner: string;
     titulo: string;

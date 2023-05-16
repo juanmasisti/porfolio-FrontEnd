@@ -7,7 +7,7 @@ import { Proyecto } from '../Interfaces/Proyecto';
 	providedIn: 'root'
 })
 export class ProyectoService{
-	url = 'http://localhost:8080/proyecto/';
+	url = 'https://backend-juei.onrender.com/proyecto/';
 
 	constructor(private httpClient:HttpClient) {}
 

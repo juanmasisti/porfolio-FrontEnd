@@ -8,7 +8,7 @@ import { Skill } from '../model/Skill';
 	providedIn: 'root'
 })
 export class SkillService {
-	url = 'http://localhost:8080/habilidad/';
+	url = 'https://backend-juei.onrender.com/habilidad/';
 
 	constructor(private httpClient:HttpClient) {}
 
