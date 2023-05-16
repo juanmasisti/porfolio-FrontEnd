@@ -24,6 +24,9 @@ import { AddFormacionComponent } from './components/formacion/add-formacion/add-
 import { ItemFormacionComponent } from './components/formacion/item-formacion/item-formacion.component';
 import { AddSobremiComponent } from './components/sobre-mi/add-sobremi/add-sobremi.component';
 import { AddHeaderComponent } from './components/header/add-header/add-header.component';
+import { LoginComponent } from './components/login/login.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { AboutmeComponent } from './components/aboutme/aboutme.component';
 
 const appRoutes: Routes = [
   {path: '', component: ProyectosComponent}
@@ -48,7 +51,10 @@ const appRoutes: Routes = [
     AddFormacionComponent,
     ItemFormacionComponent,
     AddSobremiComponent,
-    AddHeaderComponent
+    AddHeaderComponent,
+    LoginComponent,
+    ContactoComponent,
+    AboutmeComponent
   ],
   imports: [
     BrowserModule,

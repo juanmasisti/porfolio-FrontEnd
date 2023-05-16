@@ -2,7 +2,8 @@ export interface Formacion{
     id?: number;
     titulo:string;
     parrafo:string;
-    periodo: {inicio: string, fin: string};
-    img: {titulo: string, tipo: string, base64: string}
+    fechaInicio: Date,
+    fechaFin: Date
+    imagen: {nombre: string, tipo: string, base64?: Uint8Array}
     eleccion: string
 }

@@ -1,15 +1,29 @@
 import { Injectable } from '@angular/core';
-import { baseDatos } from './baseDatos.service';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Proyecto } from '../Interfaces/Proyecto';
 
 @Injectable({
 	providedIn: 'root'
 })
-export class ProyectoService extends baseDatos{
-	constructor(
-		http:HttpClient
-	) { 
-		super(http)
-		this.apiUrl += "proyectos";
+export class ProyectoService{
+	url = 'http://localhost:8080/proyecto/';
+
+	constructor(private httpClient:HttpClient) {}
+
+	public get(): Observable<Proyecto[]>{
+		return this.httpClient.get<Proyecto[]>(this.url + "lista");
+	}
+
+	public save(proyecto: Proyecto):Observable<any>{
+		return this.httpClient.post<any>(this.url + 'create', proyecto);
+	}
+
+	public delete(id: number):Observable<any>{
+		return this.httpClient.delete<any>(this.url + `delete/${id}`);
+	}
+
+	public edit(proyecto: Proyecto):Observable<any>{
+		return this.httpClient.put<any>(this.url + 'update', proyecto);
 	}
 }

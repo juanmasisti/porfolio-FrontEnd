@@ -3,9 +3,9 @@ export interface Proyecto {
     parrafo: string;
     titulo: string;
     linkPag: string,
-    img: {
-        titulo: string,
+    imagen: {
+        nombre: string,
         tipo: string,
-        base64?: string
+        base64?: Uint8Array
     }
 }

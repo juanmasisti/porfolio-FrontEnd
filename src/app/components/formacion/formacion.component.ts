@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Formacion } from 'src/app/Interfaces/Formacion';
+import { Formacion } from '../../Interfaces/Formacion';
 import { FormacionService } from '../../services/formacion.service';
 import { UiService } from '../../services/ui.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-formacion',
@@ -11,48 +12,68 @@ import { UiService } from '../../services/ui.service';
 })
 export class FormacionComponent {
   formaciones : Formacion[] = [];
+  noFormacion : boolean = false;
 	subscription?: Subscription;
 	editar: boolean = false;
-	formacion: Formacion = {titulo: "", parrafo: "",  eleccion: "", periodo: {inicio: "", fin: ""}, img: {titulo:"",tipo:"", base64:""}};
-	estado: boolean = false
-
-  constructor(
+	formacionChosen: Formacion = {titulo: "", parrafo: "",  fechaInicio: new Date(),fechaFin: new Date(), eleccion : "", imagen: {nombre: "", tipo: ""}};
+	formacionEdit: Formacion = {titulo: "", parrafo: "",  fechaInicio: new Date(),fechaFin: new Date(), eleccion : "", imagen: {nombre: "", tipo: ""}};
+	isLogged = false
+	
+  constructor(  
 		private formacionService: FormacionService,
 		private uiService: UiService,
+		private tokenService: TokenService
 	) {}
 
 	ngOnInit() {
-		this.formacionService.get().subscribe((formaciones) => {	
+		this.formacionService.get().subscribe((formaciones) => {
 			this.formaciones = formaciones
+			if (formaciones.length > 0) {
+				this.formacionChosen = formaciones[0]
+				this.noFormacion = false;
+			} else {
+				this.formacionChosen = {titulo: "", parrafo: "",  fechaInicio: new Date(),fechaFin: new Date(), eleccion : "", imagen: {nombre: "", tipo: ""}};
+				this.noFormacion = true;
+			}
 		})
-		this.subscription = this.uiService.onToggleButton().subscribe((estado)=> this.estado = estado);
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 	
 	public toggleFormFormacion() {
-		this.formacion = {titulo: "", parrafo: "",  eleccion: "", periodo: {inicio: "", fin: ""}, img: {titulo:"",tipo:"", base64:""}};
 		this.uiService.toggleFormFormacion();
-		this.uiService.toggleButton();
+		this.formacionEdit = {titulo: "", parrafo: "",  fechaInicio: new Date(),fechaFin: new Date(), eleccion : "", imagen: {nombre: "", tipo: ""}};
 	}
 
-	public deleteFormacion(Formacion: Formacion) {
-		this.formacionService.delete(Formacion).subscribe(() => {
-			this.formaciones = this.formaciones.filter( ele => ele.id !== Formacion.id )
+	public deleteFormacion(formacion: Formacion) {
+		this.formacionService.delete(formacion.id!).subscribe(() => {
+			if (this.formaciones.length == 1) 
+				this.noFormacion = true;
+			this.formaciones = this.formaciones.filter( ele => ele.id !== formacion.id )
 		})
 	}
 
-	public editFormacion(Formacion: Formacion) {
-		this.formacionService.edit(Formacion).subscribe(() => {
-			let i: number = this.formaciones.findIndex(ele => ele.id == Formacion.id);
-			this.formaciones[i] = Formacion;
+	public editFormacion(formacion: Formacion) {
+		this.formacionChosen = formacion;
+		this.formacionService.edit(formacion).subscribe(() => {
+			let i: number = this.formaciones.findIndex(ele => ele.id == formacion.id);
+			this.formaciones[i] = formacion;
+			this.ngOnInit()
 		})
 	}
 
-	public addFormacion(Formacion: Formacion) {
-		this.formacionService.add(Formacion).subscribe((Formacion: Formacion) => {
-			this.formaciones.push(Formacion)
+	public addFormacion(formacion: Formacion) {
+		this.formacionService.save(formacion).subscribe(() => {
+			if (this.formaciones.length == 0) { 
+				this.noFormacion = false;
+			}
+			this.formaciones.push(formacion)
+			this.ngOnInit()
 		});
 	}
-	
+
+	public editFormFormacion(formacion: Formacion) {
+		this.formacionEdit = formacion;
+	}
 	public getEducacion() : Formacion[] {
 		return this.formaciones.filter(elem => elem.eleccion === "educacion");
 	}
@@ -60,10 +81,7 @@ export class FormacionComponent {
 	public getExperiencia() : Formacion[] {
 		return this.formaciones.filter(elem => elem.eleccion === "experiencia");
 	}
-
-	public editFormFormacion(formacion: Formacion) {
-		this.formacion = formacion;
-	}
+}
 	
 
-}
+

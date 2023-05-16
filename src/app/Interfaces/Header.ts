@@ -1,10 +1,6 @@
 export interface Header {
     id?: number; 
-    nombre: string;
+    titulo: string;
     parrafo:string;
-    img: {
-        titulo: string,
-        tipo: string,
-        base64?: string
-    }
+    imagen: {nombre: "", tipo: "", base64?: Uint8Array}
 }

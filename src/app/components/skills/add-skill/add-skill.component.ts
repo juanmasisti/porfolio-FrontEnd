@@ -10,7 +10,7 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./add-skill.component.css']
 })
 export class AddSkillComponent  {
-  @Output() onAddSkill: EventEmitter<Skill> = new EventEmitter();
+    @Output() onAddSkill: EventEmitter<Skill> = new EventEmitter();
 	@Output() onEditSkill: EventEmitter<Skill> = new EventEmitter();
 	@Output() onToggleFormSkill: EventEmitter<Event> = new EventEmitter();
 	@Input() skill: Skill = {titulo: "", parrafo: "", porcentaje:0}; 
@@ -42,11 +42,11 @@ export class AddSkillComponent  {
 	}
 
 	get Parrafo(){
-		return this.form.get("institucion");
+		return this.form.get("parrafo");
 	}
 		
 	get Porcentaje(){
-		return this.form.get("periodo")?.get("inicio");	
+		return this.form.get("porcentaje");	
 	}
 
 	public onClose(): void {

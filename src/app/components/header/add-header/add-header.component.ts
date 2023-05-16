@@ -3,6 +3,7 @@ import { Head, Subscription } from 'rxjs';
 import { Header } from 'src/app/Interfaces/Header';
 import { UiService } from '../../../services/ui.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import * as byteBase64 from "byte-base64";
 
 @Component({
   selector: 'app-add-header',
@@ -12,7 +13,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class AddHeaderComponent {
     @Output() onSubmitHeader: EventEmitter<Header> = new EventEmitter();
 	@Output() onToggleFormHeader: EventEmitter<Event> = new EventEmitter();
-	@Input() header: Header = {id: 0, nombre: "", parrafo: "", img: {titulo: "", tipo: "", base64: ""}};
+	@Input() header: Header = {id: 0, titulo: "", parrafo: "", imagen: {nombre: "", tipo: ""}};
 	showHeader: boolean = false;
 	subscription?: Subscription;
 	form: FormGroup;
@@ -23,10 +24,10 @@ export class AddHeaderComponent {
 	) {this.subscription = this.uiService.onToggleFormHeader().subscribe( value => this.showHeader = value );
 		this.form = this.formBuilder.group({
 			id: [0],
-			nombre: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
+			titulo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: "blur"}),
 				tipo: new FormControl('', {updateOn: "blur"}),
 				base64:new FormControl('', {updateOn: "blur"})
 			})
@@ -37,13 +38,19 @@ export class AddHeaderComponent {
 		return this.form.get("parrafo");
 	}
 		
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
 
-  get Nombre(){
+  get Titulo(){
     return this.form.get("titulo");
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+	if (changes['header']?.currentValue) {
+	  this.form?.patchValue(this.header);
+	}
+	}
 
   public onClose(): void {
 		this.onToggleFormHeader.emit();
@@ -56,10 +63,10 @@ export class AddHeaderComponent {
 			reader.readAsDataURL(file);
 			reader.onload = () => {
 				this.form.patchValue({
-					img: {
-						titulo: file.name,
+					imagen: {
+						nombre: file.name,
 						tipo: file.type.split('/')[1],
-						base64: reader.result?.toString().split(',')[1]
+						base64: Array.from(byteBase64.base64ToBytes(reader.result?.toString().split(',')[1]!))
 					}
 				})
 			};

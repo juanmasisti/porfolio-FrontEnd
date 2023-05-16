@@ -2,10 +2,11 @@
      <div >
           <div class="caja_titulo">
                <h1 class = "subrayado"> Formación </h1>
-               <app-buttom 
-               color="{{estado? 'red' : 'green'}}" 
-               text="{{estado? '-' : '+'}}"
-               (btnClick)="toggleFormFormacion()"
+               <app-buttom
+               *ngIf="this.isLogged" 
+                    color= black 
+                    text=+
+                    (btnClick)="toggleFormFormacion()"
                ></app-buttom>
           </div>
 
@@ -14,7 +15,7 @@
                (onAddFormacion)="addFormacion($event)"
                (onEditFormacion)="editFormacion($event)"
                (onToggleFormFormacion)="toggleFormFormacion()"
-               [formacion]="formacion"
+               [formacion]="formacionEdit"
           > </app-add-formacion>
      </div>
      <div >
@@ -22,18 +23,18 @@
           <ul class="lista_educacion">
           <app-item-formacion
                *ngFor="let formacion of getEducacion()"
-               [formacion] = "formacion"
-               (onDeleteFormacion)="deleteFormacion(formacion)"
-               (onEditFormacion)="editFormFormacion(formacion)"
+               [formacion] = "formacionChosen"
+               (onDeleteFormacion)="deleteFormacion($event)"
+               (onEditFormacion)="editFormFormacion($event)"
           > </app-item-formacion> 
           </ul>
           <h2 class = "subrayado"> Experiencia </h2>
           <ul class="lista_educacion">
-          <app-item-formacion
+          <app-item-formacion 
                *ngFor="let formacion of getExperiencia()"
-               [formacion] = "formacion"
-               (onDeleteFormacion)="deleteFormacion(formacion)"
-               (onEditFormacion)="editFormFormacion(formacion)"
+               [formacion] = "formacionChosen"
+               (onDeleteFormacion)="deleteFormacion($event)"
+               (onEditFormacion)="editFormFormacion($event)"
           > </app-item-formacion>
           </ul>
      </div>

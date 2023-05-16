@@ -13,7 +13,7 @@ export class AddFormacionComponent {
   @Output() onAddFormacion: EventEmitter<Formacion> = new EventEmitter();
 	@Output() onEditFormacion: EventEmitter<Formacion> = new EventEmitter();
 	@Output() onToggleFormFormacion: EventEmitter<Event> = new EventEmitter();
-	@Input() formacion: Formacion = {titulo: "", parrafo: "", periodo: {inicio: "", fin: ""}, img: {titulo: "", tipo: "", base64:""}, eleccion: ""}
+	@Input() formacion: Formacion = {titulo: "", parrafo: "",  fechaInicio: new Date(),fechaFin: new Date(), eleccion : "", imagen: {nombre: "", tipo: ""}};
 	showFormFormacion: boolean = false;
 	subscription?: Subscription;
 	form: FormGroup;
@@ -27,16 +27,14 @@ export class AddFormacionComponent {
 			id: [],
 			titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			periodo: this.formBuilder.group({
-        inicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-				fin: new FormControl('', {updateOn: 'blur'}),
-      }) ,
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			fechaInicio: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			fechaFin: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 				tipo: new FormControl('', {updateOn: 'blur'}),
 				base64: new FormControl('', {updateOn: 'blur'})
-			}) ,
-      eleccion: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			}),
+      		eleccion: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 		})
 	}
 
@@ -55,17 +53,17 @@ export class AddFormacionComponent {
 	}
 		
 	get Inicio(){
-		return this.form.get("periodo")?.get("inicio");	
+		return this.form.get("fechaInicio");	
 	}
 
 	get Fin(){
-		return this.form.get("periodo")?.get("fin");	
+		return this.form.get("fechaFin");	
 	}
 
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
-  get eleccion(){
+  	get eleccion(){
 		return this.form.get("eleccion");
 	}
 
@@ -81,8 +79,8 @@ export class AddFormacionComponent {
 			reader.readAsDataURL(file);
 				reader.onload = () => {
 					this.form.patchValue({
-						img: {
-							titulo: file.name,
+						imagen: {
+							nombre: file.name,
 							tipo: file.type.split('/')[1],
 							base64: reader.result?.toString().split(',')[1]
 						}
@@ -92,12 +90,10 @@ export class AddFormacionComponent {
 	}
 
 	public onAdd(): void {
-		console.log(this.form.value)
 		if (this.form.valid) {
 			this.onAddFormacion.emit(this.form.getRawValue());
 			this.onToggleFormFormacion.emit();
 			this.form.reset()
-			alert("Operación realizada con éxito!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();
@@ -109,7 +105,6 @@ export class AddFormacionComponent {
 			this.onEditFormacion.emit(this.form.getRawValue());
 			this.onToggleFormFormacion.emit();
 			this.form.reset()
-			alert("Operación realizada con éxito!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

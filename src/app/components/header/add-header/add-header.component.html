@@ -8,12 +8,12 @@
         <label for="nombre">Nombre</label>
         <input 
             type="text" 
-            name="nombre" 
+            name="titulo" 
             placeholder="Agregar nombre"
-            formControlName="nombre"
+            formControlName="titulo"
         >
-        <div *ngIf="Nombre?.errors && Nombre?.touched" class="error">
-            <p *ngIf="Nombre?.hasError('required')">
+        <div *ngIf="Titulo?.errors && Titulo?.touched" class="error">
+            <p *ngIf="Titulo?.hasError('required')">
                 El nombre es requerido
             </p>
         </div>
@@ -24,7 +24,7 @@
         <textarea 
             type="text"  
             name="parrafo" 
-            placeholder="Agregar descipción"  
+            placeholder="Agregar descripción"  
             cols="40" rows="5"
             maxlength="260"
             formControlName="parrafo"
@@ -32,21 +32,21 @@
     </div>
     
     <div class="form-control">
-        <label for="img">Imagen</label>
+        <label for="imagen">Imagen</label>
         <input type="file" 
             style="display: none;"
             (change)="onFileSelected($event)" #fileUpload
-            formGroupName="img"
+            formGroupName="imagen"
         >
         <div class="file-upload">
             <button type="button" mat-mini-fab color="primary" class="upload-btn"
                 (click)="fileUpload.click()">
                 <i class='bx bx-folder-plus'></i>
             </button>
-            {{ this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+            {{ Imagen?.value || "No file uploaded yet." }}
         </div>
-        <div *ngIf="Img?.errors && Img?.touched" class="error">
-            <p *ngIf="Img?.hasError('required')">
+        <div *ngIf="Imagen?.errors && Imagen?.touched" class="error">
+            <p *ngIf="Imagen?.hasError('required')">
                 Una imagen es requerida
             </p>
         </div>

@@ -1,12 +1,12 @@
 
 <div class="proyecto">
-    <img [src]="this.imageSource" [alt]="this.proyecto.img.titulo">
+    <img [src]="this.imageSource" [alt]="this.proyecto.imagen.nombre">
     <div class="contenido">
         <h3> <strong>{{proyecto.titulo}}</strong> 
             <i class='bx bx-edit editar' 
-                (click)="onEdit(proyecto)"></i>
+            *ngIf="this.isLogged" (click)="onEdit(proyecto)"></i>
             <i class='bx bx-x borrar'
-                (click)="onDelete(proyecto)"></i> 
+            *ngIf="this.isLogged" (click)="onDelete(proyecto)"></i> 
         </h3>
         <p>{{proyecto.parrafo}}</p>
         <div class="lista_links">

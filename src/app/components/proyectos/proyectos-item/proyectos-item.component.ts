@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { UiService } from '../../../services/ui.service';
 import { Proyecto } from '../../../Interfaces/Proyecto';
 import { Subscription } from 'rxjs';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-proyectos-item',
@@ -10,21 +11,22 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./proyectos-item.component.css']
 })
 export class ProyectosItemComponent {
-  @Input() proyecto: Proyecto = {parrafo: "", titulo: "", linkPag:"", img: {titulo:"",tipo:"", base64:""}}
-  @Output() onDeleteProject: EventEmitter<Proyecto> = new EventEmitter();
+  @Input() proyecto: Proyecto = {parrafo: "", titulo: "", linkPag:"", imagen: {nombre: "", tipo: ""}}
+  @Input() i: number = 0;
+	@Output() onDeleteProject: EventEmitter<Proyecto> = new EventEmitter();
 	@Output() onEditFormProject: EventEmitter<Proyecto> = new EventEmitter();
-  subscription? : Subscription;
-  imageSource: any;
-  estado: boolean = false;
+	imageSource: any;
+	isLogged = false;
 
   constructor( 
 		private uiService: UiService,
-		private sanitizer: DomSanitizer
+		private sanitizer: DomSanitizer,
+    private tokenService: TokenService
 	) {}
 
   ngOnInit() : void {
-		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.proyecto.img.base64}`);
-    this.subscription = this.uiService.onToggleButton().subscribe((estado)=> this.estado = estado);
+		this.imageSource = this.sanitizer.bypassSecurityTrustResourceUrl(`data:image/png;base64, ${this.proyecto.imagen.base64}`);
+		this.isLogged = this.tokenService.getToken() != null;
 	}
 
   onDelete(proyecto:Proyecto){
@@ -34,7 +36,6 @@ export class ProyectosItemComponent {
   public onEdit(proyecto:Proyecto) {
 		this.onEditFormProject.emit(proyecto);
 		this.uiService.toggleFormProject();
-		this.uiService.toggleButton();
 	}
 
 }

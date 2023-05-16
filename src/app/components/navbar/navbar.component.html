@@ -10,20 +10,22 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav me-auto mb-0 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="html/sobreMi.html">Sobre Mi</a>
+            <a class="nav-link" (click)="sobreMi()">Sobre Mi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="html/contacto.html">Contacto</a>
+            <a class="nav-link" (click)="contacto()">Contacto</a>
           </li>
         </ul>
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item"><a class=link href="http://instagram.com/"><i class="fa-brands fa-instagram fa-2x" type="button"></i></a> 
           <li class="list-group-item"><a class=link href="http://facebook.com/"><i class="fa-brands fa-facebook fa-2x"></i> </a>  
           <li class="list-group-item"><a class=link href="http://twitter.com/"><i class="fa-brands fa-twitter fa-2x"></i> </a>  
-          <li class="list-group-item"> <a> <i class="fa fa-user-circle-o"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" ></i> </a>  
+          <li class="list-group-item"></li>
+          <button type="button" class class ="btn btn-outline-light" (click)="login()" *ngIf="!isLogged">INICIAR SESIÓN</button>
+          <button type="button" class class ="btn btn-outline-light" (click)="onLogout()" *ngIf="isLogged" >CERRAR SESIÓN</button>   
         </ul>
     
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

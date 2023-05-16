@@ -13,7 +13,7 @@ export class AddProyectoComponent{
   @Output() onAddProject: EventEmitter<Proyecto> = new EventEmitter();
   @Output() onEditProject: EventEmitter<Proyecto> = new EventEmitter();
   @Output() onToggleFormProject: EventEmitter<Event> = new EventEmitter();
-  @Input() proyecto: Proyecto = {titulo: "", parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+  @Input() proyecto: Proyecto = {titulo: "", parrafo: "", linkPag: "", imagen: {nombre: "", tipo: ""}};
   subscription?: Subscription;
   showFormProject: boolean = false;
   form: FormGroup;
@@ -28,8 +28,8 @@ export class AddProyectoComponent{
 			titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			parrafo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 			linkPag: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
-			img: this.formBuilder.group({
-				titulo: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
+			imagen: this.formBuilder.group({
+				nombre: new FormControl('', {validators: Validators.required, updateOn: 'blur'}),
 				tipo: new FormControl('', {updateOn: 'blur'}),
 				base64: new FormControl('', {updateOn: 'blur'})
 			})
@@ -54,8 +54,8 @@ export class AddProyectoComponent{
 		return this.form.get("linkPag");
 	}
 
-	get Img(){
-		return this.form.get("img")?.get("titulo");	
+	get Imagen(){
+		return this.form.get("imagen")?.get("nombre");	
 	}
 
 	public onClose(): void {
@@ -70,8 +70,8 @@ export class AddProyectoComponent{
 			reader.readAsDataURL(file);
 				reader.onload = () => {
 					this.form.patchValue({
-						img: {
-							titulo: file.name,
+						imagen: {
+							nombre: file.name,
 							tipo: file.type.split('/')[1],
 							base64: reader.result?.toString().split(',')[1]
 						}
@@ -85,7 +85,6 @@ export class AddProyectoComponent{
 			this.onAddProject.emit(this.form.getRawValue());
 			this.onToggleFormProject.emit();
 			this.form.reset()
-			alert("Operación realizada con éxito!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();
@@ -97,7 +96,6 @@ export class AddProyectoComponent{
 			this.onEditProject.emit(this.form.getRawValue());
 			this.onToggleFormProject.emit();
 			this.form.reset()
-			alert("Operación realizada con éxito!")
 		} else {
 			console.log(this.form.errors)
 			this.form.markAllAsTouched();

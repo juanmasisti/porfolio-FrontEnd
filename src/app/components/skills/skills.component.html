@@ -3,13 +3,15 @@
   <div class="caja_titulo">
       <h1 class = "subrayado"> Hard Skills & Soft Skills </h1>
       <app-buttom 
-      color="{{estado? 'red' : 'green'}}" 
-      text="{{estado? '-' : '+'}}"
-      (btnClick)="toggleFormSkill()"
+      *ngIf="this.isLogged"
+      color= black 
+      text=+
+      (click)="toggleFormSkill()"
     ></app-buttom>
   </div>
   
   <app-add-skill
+    *ngIf="this.isLogged"
       (onAddSkill)="addSkill($event)"
       (onEditSkill)="editSkill($event)"
       (onToggleFormSkill)="toggleFormSkill()"
@@ -22,10 +24,11 @@
           <app-item-skill 
           *ngFor="let skill of getSkills()" 
           [skill] = "skill"
-          (onDeleteSkill)="deleteSkill(skill)"
+          (onDeleteSkill)="deleteSkill(skill.id!)"
           (onEditFormSkill)="editFormSkill(skill)"
           >
           </app-item-skill>
   </div>
 </div>
 </section> 
+ 

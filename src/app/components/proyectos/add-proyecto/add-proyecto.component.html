@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="form-control">
-        <label for="img">Imagen</label>
+        <label for="imagen">Imagen</label>
         <input type="file" style="display: none;"
             (change)="onFileSelected($event)" #fileUpload>
         <div class="file-upload">
@@ -58,10 +58,10 @@
                 (click)="fileUpload.click()">
                 <i class='bx bx-image-add'></i>
             </button>
-            {{this.form.get("img")?.get("titulo")?.value || "No file uploaded yet."}}
+            {{this.form.get("img")?.get("nombre")?.value || "No file uploaded yet."}}
         </div>
-        <div *ngIf="Img?.errors && Img?.touched" class="error">
-            <p *ngIf="Img?.hasError('required')">
+        <div *ngIf="Imagen?.errors && Imagen?.touched" class="error">
+            <p *ngIf="Imagen?.hasError('required')">
                 Una imagen es requerida
             </p>
         </div>

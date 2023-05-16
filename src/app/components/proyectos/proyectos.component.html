@@ -3,10 +3,11 @@
 <section class="cajaProyectos">
     <div class="caja_titulo"> 
       <h1 class = "subrayado"> Proyectos </h1>
-      <app-buttom 
-        color="{{estado? 'red' : 'green'}}" 
-        text="{{estado? '-' : '+'}}"
-        (btnClick)="toggleFormProject()"
+      <app-buttom
+        *ngIf="this.isLogged" 
+          color= black 
+          text=+
+          (btnClick)="toggleFormProject()"
       ></app-buttom>
     </div>
     

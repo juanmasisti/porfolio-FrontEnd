@@ -20,11 +20,11 @@
   <div class="pieFoto" >
     <div>
       <i class='bx bx-edit editar'  (click)="toggleFormHeader()"></i>
-      <h1> {{this.header.nombre}} </h1>
+      <h1> {{this.header.titulo}} </h1>
     </div>
 
     <p><i>{{this.header.parrafo}}</i></p>
-    <a href="info.html"> Informacion de contacto </a>
+    <button type="button" class ="btn btn-primary" (click)="contacto()">Información de contacto</button>
   </div>
 
  <app-add-header

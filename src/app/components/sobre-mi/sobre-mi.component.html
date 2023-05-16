@@ -6,9 +6,10 @@
     <p>{{this.sobremi.parrafo}}</p>
 
     <app-add-sobremi
-        (onSubmitSobreMi)="editSobreMi($event)"
-        (onToggleFormSobreMi)="toggleFormSobreMi()"
-        [sobremi] = "sobremi"
+        *ngIf="this.isLogged"
+            (onSubmitSobreMi)="editSobreMi($event)"
+            (onToggleFormSobreMi)="toggleFormSobreMi()"
+            [sobremi] = "sobremi"
     > </app-add-sobremi>
 
 </section>

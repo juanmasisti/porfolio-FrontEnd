@@ -3,6 +3,7 @@ import { ProyectoService } from '../../services/proyecto.service';
 import { Proyecto } from '../../Interfaces/Proyecto';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-proyectos',
@@ -11,29 +12,29 @@ import { Subscription } from 'rxjs';
 })
 export class ProyectosComponent {
   proyectos: Proyecto[] = [];
-  project: Proyecto = {id: 0, titulo: "",parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+  project: Proyecto = {id: 0, titulo: "",parrafo: "", linkPag: "", imagen: {nombre: "", tipo: ""}};
   subscription?: Subscription;
-  estado: boolean = false;
+  isLogged: boolean = false;
   constructor(
     private uiService:UiService,
-    private proyectoService: ProyectoService
+    private proyectoService: ProyectoService,
+	private tokenService: TokenService,
   ) {}
+ 
+  	ngOnInit() {
+		this.proyectoService.get().subscribe((proyectos) => {	
+		this.proyectos = proyectos})
+	  // Verifica si esta logueado
+	  this.isLogged = this.tokenService.getToken() != null;
+	}
 
-  ngOnInit(): void {
-    // Like Promise
-      this.proyectoService.get().subscribe((proyectos)=>(
-      this.proyectos = proyectos))
-	  this.subscription = this.uiService.onToggleButton().subscribe((estado)=> this.estado = estado);
-	};
-
-  public toggleFormProject() {
-		this.project = {titulo: "", parrafo: "", linkPag: "", img: {titulo: "", tipo: "", base64: ""}};
+  	public toggleFormProject() {
+		this.project = {titulo: "", parrafo: "", linkPag: "", imagen: {nombre: "", tipo: ""}};
 		this.uiService.toggleFormProject();
-		this.uiService.toggleButton();
 	}
 
 	public deleteProject(project: Proyecto) {
-		this.proyectoService.delete(project).subscribe(() => {
+		this.proyectoService.delete(project.id!).subscribe(() => {
 			this.proyectos = this.proyectos.filter( ele => ele.id !== project.id )
 		})
 	}
@@ -42,12 +43,14 @@ export class ProyectosComponent {
 		this.proyectoService.edit(project).subscribe(() => {
 			let i: number = this.proyectos.findIndex(ele => ele.id == project.id);
 			this.proyectos[i] = project;
+			this.ngOnInit()
 		})
 	}
 
 	public addProject(project: Proyecto) {
-		this.proyectoService.add(project).subscribe((project: Proyecto) => {
+		this.proyectoService.save(project).subscribe(() => {
 			this.proyectos.push(project)
+			this.ngOnInit()
 		});
 	}
 

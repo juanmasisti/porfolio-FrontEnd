@@ -3,6 +3,7 @@ import { UiService } from '../../services/ui.service';
 import { Subscription } from 'rxjs';
 import { SkillService } from "../../services/skill.service";
 import { Skill } from '../../Interfaces/Skill';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-skills',
@@ -15,52 +16,54 @@ export class SkillsComponent {
   subscription?: Subscription;
   editar: boolean = false;
   skill: Skill = {titulo: "", parrafo: "", porcentaje: 0};
-  estado: boolean = false;
+  isLogged = false;
 
   constructor(
   private skillService: SkillService,
   private uiService: UiService,
+  private tokenService: TokenService
 ) {}
-
+  
 ngOnInit() {
   this.skillService.get().subscribe((skills) => {	
     this.skills = skills
-    this.subscription = this.uiService.onToggleButton().subscribe((estado)=> this.estado = estado);
   })
+  // Verifica si esta logueado
+  this.isLogged = this.tokenService.getToken() != null;
 }
 
 public toggleFormSkill() {
   this.skill = {titulo: "", parrafo: "", porcentaje: 0};
   this.uiService.toggleFormSkill();
-  this.uiService.toggleButton();
 }
 
-public deleteSkill(skill: Skill) {
-  this.skillService.delete(skill).subscribe(() => {
-    this.skills = this.skills.filter( ele => ele.id !== skill.id )
-  })
+public addSkill(skill: Skill) {
+  this.skillService.save(skill).subscribe((skillSubs: Skill) => {
+    this.skills.push(skill)
+    this.ngOnInit()
+  });
 }
+
+public deleteSkill(id:number){
+  if(id != undefined){
+      this.skillService.delete(id).subscribe(data => { this.skills = this.skills.filter( ele => ele.id !== id ) }, err =>{alert("No se pudo eliminar esta skill")
+  })
+}}
 
 public editSkill(skill: Skill) {
   this.skillService.edit(skill).subscribe(() => {
     let i: number = this.skills.findIndex(ele => ele.id == skill.id);
     this.skills[i] = skill;
   })
-}
-
-public addSkill(skill: Skill) {
-  this.skillService.add(skill).subscribe((skill: Skill) => {
-    this.skills.push(skill)
-  });
-}
+} 
 
 public getSkills() : Skill[] {
-  return this.skills;
+  return this.skills
 }
+
 
 public editFormSkill(skill: Skill) {
   this.skill = skill;
 }
-
 
 }
