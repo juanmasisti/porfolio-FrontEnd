@@ -23,7 +23,7 @@
           <ul class="lista_educacion">
           <app-item-formacion
                *ngFor="let formacion of getEducacion()"
-               [formacion] = "formacionChosen"
+               [formacion] = "formacion"
                (onDeleteFormacion)="deleteFormacion($event)"
                (onEditFormacion)="editFormFormacion($event)"
           > </app-item-formacion> 
@@ -32,7 +32,7 @@
           <ul class="lista_educacion">
           <app-item-formacion 
                *ngFor="let formacion of getExperiencia()"
-               [formacion] = "formacionChosen"
+               [formacion] = "formacion"
                (onDeleteFormacion)="deleteFormacion($event)"
                (onEditFormacion)="editFormFormacion($event)"
           > </app-item-formacion>

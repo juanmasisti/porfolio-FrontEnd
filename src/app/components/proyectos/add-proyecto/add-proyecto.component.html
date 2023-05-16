@@ -58,7 +58,7 @@
                 (click)="fileUpload.click()">
                 <i class='bx bx-image-add'></i>
             </button>
-            {{this.form.get("img")?.get("nombre")?.value || "No file uploaded yet."}}
+            {{this.form.get("imagen")?.get("nombre")?.value || "No file uploaded yet."}}
         </div>
         <div *ngIf="Imagen?.errors && Imagen?.touched" class="error">
             <p *ngIf="Imagen?.hasError('required')">

@@ -45,6 +45,7 @@ export class FormacionComponent {
 	}
 
 	public deleteFormacion(formacion: Formacion) {
+		console.log(formacion)
 		this.formacionService.delete(formacion.id!).subscribe(() => {
 			if (this.formaciones.length == 1) 
 				this.noFormacion = true;
