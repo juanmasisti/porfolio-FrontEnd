@@ -9,8 +9,6 @@
                     (btnClick)="toggleFormFormacion()"
                ></app-buttom>
           </div>
-
-    
           <app-add-formacion
                (onAddFormacion)="addFormacion($event)"
                (onEditFormacion)="editFormacion($event)"
@@ -18,24 +16,39 @@
                [formacion]="formacionEdit"
           > </app-add-formacion>
      </div>
-     <div >
-          <h2 class = "subrayado"> Educación </h2>
-          <ul class="lista_educacion">
-          <app-item-formacion
-               *ngFor="let formacion of getEducacion()"
-               [formacion] = "formacion"
-               (onDeleteFormacion)="deleteFormacion($event)"
-               (onEditFormacion)="editFormFormacion($event)"
-          > </app-item-formacion> 
-          </ul>
-          <h2 class = "subrayado"> Experiencia </h2>
-          <ul class="lista_educacion">
-          <app-item-formacion 
-               *ngFor="let formacion of getExperiencia()"
-               [formacion] = "formacion"
-               (onDeleteFormacion)="deleteFormacion($event)"
-               (onEditFormacion)="editFormFormacion($event)"
-          > </app-item-formacion>
-          </ul>
+     <!---EDUCACION-->
+     <h2 class = "subrayado"> Educación </h2>
+     <div class="container">
+          <div class="row">
+               <div class="col-sm-12 col-md-6 col-lg-4"> 
+                    <ul class="lista_educacion">
+                    <app-item-formacion
+                         *ngFor="let formacion of getEducacion()"
+                         [formacion] = "formacion"
+                         (onDeleteFormacion)="deleteFormacion($event)"
+                         (onEditFormacion)="editFormFormacion($event)"
+                    > </app-item-formacion> 
+                    </ul>
+               </div>
+          </div>          
      </div>
+     <!---EXPERIENCIA-->
+     <h2 class = "subrayado"> Experiencia </h2>
+     <div class="container">
+          <div class="row">
+               <div class="col-sm-12 col-md-6 col-lg-4"> 
+                    <ul class="lista_educacion">
+                         <app-item-formacion 
+                              *ngFor="let formacion of getExperiencia()"
+                              [formacion] = "formacion"
+                              (onDeleteFormacion)="deleteFormacion($event)"
+                              (onEditFormacion)="editFormFormacion($event)"
+                         > </app-item-formacion>
+                    </ul>
+               </div>
+          </div>          
+     </div>
+
 </section>
+
+                  

@@ -18,14 +18,18 @@
     [proyecto]="project"
     ></app-add-proyecto>
     
-    <div>
-      <app-proyectos-item 
-      *ngFor="let project of proyectos; let i = index"
-          [proyecto] = "project"
-          (onDeleteProject)="deleteProject($event)"
-          (onEditFormProject)="editFormProject($event)"
-      ></app-proyectos-item>
-    </div>
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-12 col-md-6 col-lg-4"> 
+            <app-proyectos-item 
+            *ngFor="let project of proyectos; let i = index"
+                [proyecto] = "project"
+                (onDeleteProject)="deleteProject($event)"
+                (onEditFormProject)="editFormProject($event)"
+            ></app-proyectos-item>
+          </div>
+      </div>
+    </div>      
 </section>
 
 
